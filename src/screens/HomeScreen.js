@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   screenFill: {
-    backgroundColor: green,
+    backgroundColor: white,
     flex: 1
   },
   backgroundImage: {

@@ -11,7 +11,7 @@ export default function PlantListScreen({ navigation }) {
   useEffect(() => {
     fetch(baseURL + '/plants')
       .then(response => response.json())
-      .then(plants => setPlants(plants))
+      .then(plants => setPlants([...plants.sort((a, b) => a.id - b.id)]))
   }, [])
 
   return (
@@ -26,7 +26,8 @@ export default function PlantListScreen({ navigation }) {
               name={item.name}
               id={item.id}
               image={item.image}
-              navigation={navigation} />
+              navigation={navigation}
+              location='Plant Details' />
           }} />
         : null}
     </SafeAreaView>

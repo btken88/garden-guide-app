@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeScreen from './src/screens/HomeScreen'
 import PlantNavContainer from './src/components/PlantNavContainer'
-import SeedVaultScreen from './src/screens/SeedVaultScreen'
+import TodoListScreen from './src/screens/TodoListScreen'
 import GardenScreen from './src/screens/GardenScreen'
 
 const Tab = createBottomTabNavigator();
@@ -19,7 +19,7 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Plants" component={PlantNavContainer} />
-        <Tab.Screen name="Seed Vault" component={SeedVaultScreen} />
+        <Tab.Screen name="To Do" component={TodoListScreen} />
         <Tab.Screen name="My Garden" component={GardenScreen} />
       </Tab.Navigator>
     </NavigationContainer>
