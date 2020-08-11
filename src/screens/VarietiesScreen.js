@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Image, StyleSheet, FlatList } from 'react-native'
 import PlantCard from '../components/PlantCard'
+import { ScrollView } from 'react-native-gesture-handler'
 
-const plantsBaseURL = 'http://localhost:5000/plants/'
-const varietiesBaseURL = 'http://localhost:5000/varieties/'
+const plantsBaseURL = 'https://garden-guide.herokuapp.com/plants/'
+const varietiesBaseURL = 'https://garden-guide.herokuapp.com/varieties/'
 
 export default function VarietiesScreen({ route, navigation }) {
   const plantID = route.params.id
@@ -38,12 +39,14 @@ export default function VarietiesScreen({ route, navigation }) {
   }
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       {plant.name
         ? <>
           <Text style={styles.headline}>{plant.name}</Text>
           <Image style={styles.image} source={{ uri: plant.image }} alt={plant.name} />
-          <Text style={styles.description}>{plant.description}</Text>
+          <ScrollView style={styles.scroll}>
+            <Text style={styles.description}>{plant.description}</Text>
+          </ScrollView>
         </>
         : null}
       {varieties.length
@@ -55,14 +58,20 @@ export default function VarietiesScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
   image: {
-    height: 200
+    height: 200,
+    margin: 10,
+    borderRadius: 5
   },
   headline: {
     textAlign: "center",
     fontSize: 20,
-    marginVertical: 8
+    marginTop: 10
   },
   description: {
-    fontSize: 15
+    fontSize: 16,
+    marginHorizontal: 20
+  },
+  scroll: {
+    marginBottom: 10
   }
 })

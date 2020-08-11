@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, StyleSheet, FlatList } from 'react-native'
 import { AppLoading } from 'expo'
 import PlantCard from '../components/PlantCard'
 
-const baseURL = 'http://localhost:5000'
+const baseURL = 'https://garden-guide.herokuapp.com'
 
 export default function PlantListScreen({ navigation }) {
   const [plants, setPlants] = useState([])

@@ -17,7 +17,8 @@ export default function PlantNavContainer() {
         component={VarietiesScreen} />
       <Stack.Screen
         name="Plant Variety"
-        component={PlantScreen} />
+        component={PlantScreen}
+        options={({ route }) => ({ title: route.params.name })} />
     </Stack.Navigator>
   )
 }
