@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, Switch } from 'react-native'
 
 const todoURL = 'http://localhost:5000/todos/'
 
-export default function TodoCard(props) {
-  const [todo, setTodo] = useState({ ...props.todo })
+export default function TodoCard({ todoData, todos, setTodos }) {
+  const [todo, setTodo] = useState(todoData)
+  const [edit, setEdit] = useState(false)
 
   function backgroundColor() {
     return todo.urgent ? '#f5f6a2' : '#f5f5f5'
@@ -36,8 +37,19 @@ export default function TodoCard(props) {
   })
 
   function markDone() {
-    setTodo({ ...todo, done: !todo.done })
-    fetch()
+    const updatedTodo = { ...todo, done: !todo.done }
+    setTodo(updatedTodo)
+    fetch(todoURL + todo.id, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedTodo)
+    }).then(response => response.json())
+      .then(newTodo => {
+        const updatedTodos = todos.map(todo => {
+          return todo.id === newTodo.id ? newTodo : todo
+        })
+        setTodos(updatedTodos)
+      })
   }
 
   return (

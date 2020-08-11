@@ -21,7 +21,9 @@ export default function TodoListScreen() {
     return <FlatList
       data={todos}
       keyExtractor={item => item.id.toString()}
-      renderItem={({ item }) => <TodoCard todo={item} />} />
+      renderItem={({ item }) => {
+        return <TodoCard todoData={item} todos={todos} setTodos={setTodos} />
+      }} />
   }
 
   return (
