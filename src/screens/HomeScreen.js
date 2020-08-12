@@ -3,11 +3,13 @@ import { View, Text, SafeAreaView, ImageBackground, StyleSheet } from 'react-nat
 
 export default function HomeScreen() {
   const image = require('../../assets/colorful-vegetables-low.jpg')
+
   return (
     <SafeAreaView style={styles.screenFill}>
       <ImageBackground source={image} style={styles.backgroundImage}>
         <Text style={styles.header}>Garden Guide</Text>
       </ImageBackground>
+      {token ? null : <SignIn />}
       <View style={styles.newFeatures}>
         <Text style={styles.featuresHeader}>New Features Coming Soon:</Text>
         <Text style={styles.featuresContent}>View growing information for different plant varieties.</Text>
