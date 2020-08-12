@@ -1,66 +1,36 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, TextInput, Button, ImageBackground, StyleSheet } from 'react-native'
+import { View, Button, TextInput, SafeAreaView, Text, ImageBackground, StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 
 const image = require('../../assets/colorful-vegetables-low.jpg')
-
-const signUpURL = 'http://localhost:5000/signup'
-
 const initialState = {
-  first_name: '',
-  last_name: '',
-  zip: null,
   email: '',
   password: ''
 }
 
-export default function SignUpScreen({ navigation, setToken }) {
+const loginURL = 'http://localhost:5000/login'
+
+export default function SignInScreen({ navigation, setToken }) {
   const [user, setUser] = useState(initialState)
 
-  function signUp() {
-    fetch(signUpURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+  function logIn() {
+    fetch(loginURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user)
     }).then(response => response.json())
       .then(({ token }) => {
         AsyncStorage.setItem('token', token)
         setToken(true)
       })
-      .catch(err => alert(err.message))
+      .catch(error => console.error(error.error))
   }
 
   return (
     <SafeAreaView>
       <ImageBackground source={image} style={styles.backgroundImage}>
-        <Text style={styles.header}>Sign Up</Text>
+        <Text style={styles.header}>Sign In</Text>
       </ImageBackground>
-      <View style={styles.nameContainer}>
-        <View>
-          <Text style={styles.label}>First Name</Text>
-          <TextInput
-            autoCorrect={false}
-            style={[styles.input, { width: 160 }]}
-            placeholder='First Name'
-            value={user.first_name}
-            onChangeText={text => setUser({ ...user, first_name: text })} />
-        </View>
-        <View>
-          <Text style={styles.label}>Last Name</Text>
-          <TextInput
-            autoCorrect={false}
-            style={[styles.input, { width: 220 }]}
-            placeholder='Last Name'
-            value={user.last_name}
-            onChangeText={text => setUser({ ...user, last_name: text })} />
-        </View>
-      </View>
-      <Text style={styles.label}>Zip Code</Text>
-      <TextInput
-        style={styles.input}
-        placeholder='Zip Code'
-        value={user.zip}
-        onChangeText={text => setUser({ ...user, zip: text })} />
       <Text style={styles.label}>Email</Text>
       <TextInput
         autoCapitalize="none"
@@ -79,11 +49,11 @@ export default function SignUpScreen({ navigation, setToken }) {
         value={user.password}
         onChangeText={text => setUser({ ...user, password: text })} />
       <View style={styles.buttonContainer}>
-        <Button title="Sign Up" color={green} onPress={signUp} />
+        <Button title="Log In" color={green} onPress={logIn} />
         <Button
-          title="Back to Sign In"
+          title="New User? Sign Up"
           color={green}
-          onPress={() => navigation.navigate('Sign In')} />
+          onPress={() => navigation.navigate('Sign Up')} />
       </View>
     </SafeAreaView>
   )
@@ -110,7 +80,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     fontSize: 16,
     padding: 5,
-    margin: 8,
+    margin: 8
   },
   label: {
     marginLeft: 20,
@@ -122,10 +92,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20
-  },
-  nameContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between"
   }
 })

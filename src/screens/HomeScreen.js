@@ -1,8 +1,10 @@
 import React from 'react'
-import { View, Text, SafeAreaView, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, SafeAreaView, ImageBackground, StyleSheet, Button } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 
-export default function HomeScreen() {
+export default function HomeScreen({ setToken }) {
   const image = require('../../assets/colorful-vegetables-low.jpg')
+
   return (
     <SafeAreaView style={styles.screenFill}>
       <ImageBackground source={image} style={styles.backgroundImage}>
@@ -17,6 +19,13 @@ export default function HomeScreen() {
         <Text style={styles.featuresContent}>Add new plant varieties to our database</Text>
         <Text style={styles.featuresContent}>Get notifications for when to plant your seeds</Text>
       </View>
+      <Button
+        title="Log Out"
+        onPress={() => {
+          AsyncStorage.removeItem('token')
+            .then(setToken(false))
+            .catch(console.log)
+        }} />
     </SafeAreaView >
   )
 }
