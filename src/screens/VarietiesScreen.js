@@ -3,8 +3,11 @@ import { View, Text, Image, StyleSheet, FlatList } from 'react-native'
 import PlantCard from '../components/PlantCard'
 import { ScrollView } from 'react-native-gesture-handler'
 
-const plantsBaseURL = 'https://garden-guide.herokuapp.com/plants/'
-const varietiesBaseURL = 'https://garden-guide.herokuapp.com/varieties/'
+// const plantsBaseURL = 'https://garden-guide.herokuapp.com/plants/'
+// const varietiesBaseURL = 'https://garden-guide.herokuapp.com/varieties/'
+
+const plantsBaseURL = 'http://localhost:5000/plants/'
+const varietiesBaseURL = 'http://localhost:5000/varieties/'
 
 export default function VarietiesScreen({ route, navigation }) {
   const plantID = route.params.id

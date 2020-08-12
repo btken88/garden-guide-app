@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Platform, StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -16,17 +16,22 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
+  const [token, setToken] = useState(false)
 
-  function checkSignIn() {
+  useEffect(() => {
     AsyncStorage.getItem('token')
-      .then(() => true)
-      .catch(() => false)
-  }
+      .then(token => token ? setToken(true) : setToken(false))
+      .catch(() => setToken(false))
+  }, [])
 
   const signInNavigation = (
     <Stack.Navigator screenOptions={{ headerShown: false }} >
-      <Stack.Screen name="Sign In" component={SignInScreen} />
-      <Stack.Screen name="Sign Up" component={SignUpScreen} />
+      <Stack.Screen name="Sign In">
+        {(params) => <SignInScreen {...params} setToken={setToken} />}
+      </Stack.Screen>
+      <Stack.Screen name="Sign Up">
+        {(params) => <SignUpScreen {...params} setToken={setToken} />}
+      </Stack.Screen>
     </Stack.Navigator>
   )
 
@@ -34,12 +39,11 @@ export default function App() {
     <Tab.Navigator>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="home" size={24} color='#033a07' />,
           activeTintColor: '#033A07'
-        }}
-      />
+        }}>
+        {(props) => <HomeScreen {...props} setToken={setToken} />}</Tab.Screen>
       <Tab.Screen
         name="Plants"
         component={PlantNavContainer}
@@ -67,7 +71,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <StatusBar hidden={Platform.OS === 'android' ? true : false} />
-      {checkSignIn() ? appNavigation : signInNavigation}
+      {token ? appNavigation : signInNavigation}
     </NavigationContainer>
   )
 }

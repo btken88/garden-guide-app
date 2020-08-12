@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import GrowingInfo from '../components/GrowingInfo'
 
-const varietyURL = 'https://garden-guide.herokuapp.com/varieties/'
+// const varietyURL = 'https://garden-guide.herokuapp.com/varieties/'
+const varietyURL = 'http://localhost:5000/varieties/'
+
 export default function SpeciesScreen({ route }) {
   const varietyID = route.params.id
 
