@@ -10,8 +10,6 @@ export default function HomeScreen() {
       </ImageBackground>
       <View style={styles.newFeatures}>
         <Text style={styles.featuresHeader}>New Features Coming Soon:</Text>
-        <Text style={styles.featuresContent}>View descriptions of different plants</Text>
-        <Text style={styles.featuresContent}>Create a garden todo list</Text>
         <Text style={styles.featuresContent}>View growing information for different plant varieties.</Text>
         <Text style={styles.featuresContent}>Save plant varieties to your seed vault</Text>
         <Text style={styles.featuresContent}>Make notes about the plants in your seed vault</Text>
