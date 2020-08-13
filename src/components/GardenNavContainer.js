@@ -1,21 +1,18 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
-import PlantListScreen from '../screens/PlantListScreen';
-import VarietiesScreen from '../screens/VarietiesScreen';
+import GardenScreen from '../screens/GardenScreen';
 import PlantScreen from '../screens/PlantScreen';
 
 const Stack = createStackNavigator();
 
-export default function PlantNavContainer() {
+export default function GardenNavContainer({ tokenValue }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Plant List"
-        component={PlantListScreen}
-        options={{ headerShown: false }} />
-      <Stack.Screen
-        name="Plant Details"
-        component={VarietiesScreen} />
+        name="My Garden"
+        options={{ headerShown: false }}>
+        {(props) => <GardenScreen tokenValue={tokenValue} {...props} />}
+      </Stack.Screen>
       <Stack.Screen
         name="Plant Variety"
         component={PlantScreen}

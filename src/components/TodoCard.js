@@ -62,7 +62,7 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
         const updatedTodos = todos.map(todo => {
           return todo.id === newTodo.id ? newTodo : todo
         })
-        setTodos(updatedTodos)
+        setTodos([...updatedTodos])
       })
   }
 

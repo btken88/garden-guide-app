@@ -24,16 +24,30 @@ export default function TodoListScreen({ tokenValue }) {
   }, [])
 
   function todosList() {
-    return <FlatList
-      data={todos}
-      keyExtractor={item => item.id.toString()}
-      renderItem={({ item }) => {
-        return <TodoCard
-          todoData={item}
-          todos={todos}
-          setTodos={setTodos}
-          tokenValue={tokenValue} />
-      }} />
+    return (
+      <>
+        {/* <FlatList
+          data={inProgress}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({ item }) => {
+            return <TodoCard
+              todoData={item}
+              todos={todos}
+              setTodos={setTodos}
+              tokenValue={tokenValue} />
+          }} /> */}
+        <FlatList
+          data={todos}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({ item }) => {
+            return <TodoCard
+              todoData={item}
+              todos={todos}
+              setTodos={setTodos}
+              tokenValue={tokenValue} />
+          }} />
+      </>
+    )
   }
 
   return (
@@ -64,7 +78,6 @@ const [red, green, brown, yellow, black, white] = ['#7a152e', '#033a07', '#461c0
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
-    marginBottom: 10
   },
   header: {
     fontSize: 30,

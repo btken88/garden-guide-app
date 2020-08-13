@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import AsyncStorage from '@react-native-community/async-storage'
 import SignInScreen from './src/screens/SignInScreen'
 import SignUpScreen from './src/screens/SignUpScreen'
+import GardenNavContainer from './src/components/GardenNavContainer'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -69,7 +70,7 @@ export default function App() {
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="seed" size={24} color='#033a07' />
         }}>
-        {(props) => <GardenScreen {...props} tokenValue={tokenValue} />}
+        {(props) => <GardenNavContainer {...props} tokenValue={tokenValue} />}
       </Tab.Screen>
     </Tab.Navigator>
   )
