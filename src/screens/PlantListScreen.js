@@ -24,9 +24,7 @@ export default function PlantListScreen({ navigation }) {
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => {
             return <PlantCard
-              name={item.name}
-              id={item.id}
-              image={item.image}
+              plant={item}
               navigation={navigation}
               location='Plant Details' />
           }} />

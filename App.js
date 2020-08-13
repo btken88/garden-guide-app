@@ -16,9 +16,23 @@ import GardenNavContainer from './src/components/GardenNavContainer'
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+const userPlantsURL = 'http://localhost:5000/user_plants'
+
 export default function App() {
   const [token, setToken] = useState(false)
   const [tokenValue, setTokenValue] = useState('')
+  const [userPlants, setUserPlants] = useState([])
+
+  useEffect(() => {
+    fetch(userPlantsURL, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': tokenValue
+      }
+    }).then(response => response.json())
+      .then(plants => setUserPlants(plants))
+      .catch(err => alert(err.message))
+  }, [tokenValue])
 
   useEffect(() => {
     AsyncStorage.getItem('token')
@@ -54,10 +68,15 @@ export default function App() {
       </Tab.Screen>
       <Tab.Screen
         name="Plants"
-        component={PlantNavContainer}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="leaf-maple" size={24} color='#033a07' />
-        }} />
+        }}>
+        {(props) => <PlantNavContainer
+          {...props}
+          tokenValue={tokenValue}
+          userPlants={userPlants}
+          setUserPlants={setUserPlants} />}
+      </Tab.Screen>
       <Tab.Screen
         name="To Do"
         options={{
@@ -70,7 +89,11 @@ export default function App() {
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="seed" size={24} color='#033a07' />
         }}>
-        {(props) => <GardenNavContainer {...props} tokenValue={tokenValue} />}
+        {(props) => <GardenNavContainer
+          {...props}
+          tokenValue={tokenValue}
+          userPlants={userPlants}
+          setUserPlants={setUserPlants} />}
       </Tab.Screen>
     </Tab.Navigator>
   )

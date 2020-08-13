@@ -33,9 +33,7 @@ export default function VarietiesScreen({ route, navigation }) {
       keyExtractor={item => item.id.toString()}
       renderItem={({ item }) => {
         return <PlantCard
-          name={item.commonName}
-          id={item.id}
-          image={item.image}
+          plant={item}
           navigation={navigation}
           location='Plant Variety' />
       }} />
