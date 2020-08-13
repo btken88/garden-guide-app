@@ -51,10 +51,12 @@ export default function TodoForm({ setNewTodo, todos, setTodos, tokenValue }) {
         <Text style={{ fontSize: 16 }}>Urgent</Text>
         <Button
           title="Submit"
-          onPress={submitForm} />
+          onPress={submitForm}
+          color='#033a07' />
         <Button
           title="Cancel"
-          onPress={() => setNewTodo(false)} />
+          onPress={() => setNewTodo(false)}
+          color='#033a07' />
       </View>
     </View>
   )

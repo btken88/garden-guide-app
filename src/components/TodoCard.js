@@ -84,6 +84,19 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
       })
   }
 
+  function deleteTodo() {
+    fetch(todoURL + todo.id, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': tokenValue
+      }
+    }).then(response => response.json())
+      .then(() => {
+        const updatedTodos = todos.filter(newtodo => newtodo.id !== todo.id)
+        setTodos(updatedTodos)
+      })
+  }
+
   function createCard() {
     if (edit) {
       return (
@@ -108,7 +121,8 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
                 onValueChange={() => setTodo({ ...todo, urgent: !todo.urgent })} />
               <Text style={styles.text}>Urgent</Text>
             </View>
-            <Button title="Save" onPress={saveEdit} />
+            <Button title="Save" onPress={saveEdit} color='#033a07' />
+            <Button title="Delete" onPress={deleteTodo} color='#033a07' />
           </View>
         </>
       )
@@ -124,7 +138,7 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
                 onValueChange={markDone} />
               <Text style={styles.text}>Done!</Text>
             </View>
-            <Button title="Edit" onPress={() => setEdit(true)} />
+            <Button title="Edit" onPress={() => setEdit(true)} color='#033a07' />
           </View>
         </>
       )

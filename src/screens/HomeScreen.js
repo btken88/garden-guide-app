@@ -25,7 +25,8 @@ export default function HomeScreen({ setToken }) {
           AsyncStorage.removeItem('token')
             .then(setToken(false))
             .catch(console.log)
-        }} />
+        }}
+        color='#033a07' />
     </SafeAreaView >
   )
 }

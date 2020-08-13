@@ -47,7 +47,10 @@ export default function TodoListScreen({ tokenValue }) {
           todos={todos}
           setTodos={setTodos}
           tokenValue={tokenValue} />
-        : <Button onPress={() => setNewTodo(true)} title='Add a New Todo' />}
+        : <Button
+          onPress={() => setNewTodo(true)}
+          title='Add a New Todo'
+          color='#033a07' />}
       {todos.length
         ? todosList()
         : <Text style={styles.notodo}>No Todos Yet</Text>}
@@ -61,6 +64,7 @@ const [red, green, brown, yellow, black, white] = ['#7a152e', '#033a07', '#461c0
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
+    marginBottom: 10
   },
   header: {
     fontSize: 30,
