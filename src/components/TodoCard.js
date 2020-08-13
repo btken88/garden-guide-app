@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Switch, Button, TextInput } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 
 const todoURL = 'http://localhost:5000/todos/'
 
-export default function TodoCard({ todoData, todos, setTodos }) {
+export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
   const [todo, setTodo] = useState(todoData)
   const [edit, setEdit] = useState(false)
 
@@ -51,7 +52,10 @@ export default function TodoCard({ todoData, todos, setTodos }) {
     setTodo(updatedTodo)
     fetch(todoURL + todo.id, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': tokenValue
+      },
       body: JSON.stringify(updatedTodo)
     }).then(response => response.json())
       .then(newTodo => {
@@ -65,7 +69,10 @@ export default function TodoCard({ todoData, todos, setTodos }) {
   function saveEdit() {
     fetch(todoURL + todo.id, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': tokenValue
+      },
       body: JSON.stringify(todo)
     }).then(response => response.json())
       .then(newtodo => {

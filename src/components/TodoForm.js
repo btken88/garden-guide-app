@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Text, View, TextInput, StyleSheet, Switch, Button } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 
 const todoURL = 'http://localhost:5000/todos'
-export default function TodoForm({ setNewTodo, todos, setTodos }) {
+export default function TodoForm({ setNewTodo, todos, setTodos, tokenValue }) {
   const [todoForm, setTodoForm] = useState({
     todo: '',
     done: false,
@@ -25,7 +26,10 @@ export default function TodoForm({ setNewTodo, todos, setTodos }) {
   function submitForm() {
     fetch(todoURL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': tokenValue
+      },
       body: JSON.stringify(todoForm)
     }).then(response => response.json())
       .then(todo => setTodos([...todos, todo]))

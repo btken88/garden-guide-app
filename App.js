@@ -17,10 +17,16 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [token, setToken] = useState(false)
+  const [tokenValue, setTokenValue] = useState('')
 
   useEffect(() => {
     AsyncStorage.getItem('token')
-      .then(token => token ? setToken(true) : setToken(false))
+      .then(token => {
+        if (token) {
+          setTokenValue(token)
+          setToken(true)
+        } else setToken(false)
+      })
       .catch(() => setToken(false))
   }, [])
 
@@ -43,28 +49,28 @@ export default function App() {
           tabBarIcon: () => <MaterialCommunityIcons name="home" size={24} color='#033a07' />,
           activeTintColor: '#033A07'
         }}>
-        {(props) => <HomeScreen {...props} setToken={setToken} />}</Tab.Screen>
+        {(props) => <HomeScreen {...props} setToken={setToken} />}
+      </Tab.Screen>
       <Tab.Screen
         name="Plants"
         component={PlantNavContainer}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="leaf-maple" size={24} color='#033a07' />
-        }}
-      />
+        }} />
       <Tab.Screen
         name="To Do"
-        component={TodoListScreen}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="format-list-bulleted" size={24} color='#033a07' />
-        }}
-      />
+        }}>
+        {(props) => <TodoListScreen {...props} tokenValue={tokenValue} />}
+      </Tab.Screen>
       <Tab.Screen
         name="My Garden"
-        component={GardenScreen}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="seed" size={24} color='#033a07' />
-        }}
-      />
+        }}>
+        {(props) => <GardenScreen {...props} tokenValue={tokenValue} />}
+      </Tab.Screen>
     </Tab.Navigator>
   )
 

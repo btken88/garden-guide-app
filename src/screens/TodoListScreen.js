@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { SafeAreaView, Text, ImageBackground, StyleSheet, Button, FlatList } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import TodoForm from '../components/TodoForm'
 import TodoCard from '../components/TodoCard'
 
 const todosURL = 'http://localhost:5000/todos'
 const image = require('../../assets/colorful-vegetables-low.jpg')
 
-export default function TodoListScreen() {
+export default function TodoListScreen({ tokenValue }) {
   const [newTodo, setNewTodo] = useState(false)
   const [todos, setTodos] = useState([])
 
   useEffect(() => {
-    fetch(todosURL)
+    fetch(todosURL, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': tokenValue
+      }
+    })
       .then(response => response.json())
       .then(todos => setTodos(todos))
       .catch(err => console.error(err.message))
@@ -22,7 +28,11 @@ export default function TodoListScreen() {
       data={todos}
       keyExtractor={item => item.id.toString()}
       renderItem={({ item }) => {
-        return <TodoCard todoData={item} todos={todos} setTodos={setTodos} />
+        return <TodoCard
+          todoData={item}
+          todos={todos}
+          setTodos={setTodos}
+          tokenValue={tokenValue} />
       }} />
   }
 
@@ -32,7 +42,11 @@ export default function TodoListScreen() {
         <Text style={styles.header}>To Do List</Text>
       </ImageBackground>
       {newTodo
-        ? <TodoForm setNewTodo={setNewTodo} todos={todos} setTodos={setTodos} />
+        ? <TodoForm
+          setNewTodo={setNewTodo}
+          todos={todos}
+          setTodos={setTodos}
+          tokenValue={tokenValue} />
         : <Button onPress={() => setNewTodo(true)} title='Add a New Todo' />}
       {todos.length
         ? todosList()
