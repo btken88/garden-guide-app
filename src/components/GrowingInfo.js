@@ -5,6 +5,7 @@ export default function GrowingInfo(props) {
   const { habit, indoor, outdoor, maturity, scientificName } = props.plant
 
   function startDate(weeks) {
+    if (weeks === 0) return 'Week of last frost'
     return weeks < 0
       ? `${Math.abs(weeks)} weeks before last frost`
       : `${weeks} weeks after last frost`
@@ -17,14 +18,14 @@ export default function GrowingInfo(props) {
         <Text style={styles.centerWhite}>Seed Start Dates:</Text>
         <View style={styles.flexCard}>
           <View style={styles.dateCard}>
-            <Text style={styles.centerWhite}>Indoor:</Text>
-            <Text style={[styles.centerWhite, { flexWrap: "wrap" }]}>
+            <Text style={[styles.whiteText, { marginBottom: 5 }]}>Indoor:</Text>
+            <Text style={[styles.whiteText, { flexWrap: "wrap" }]}>
               {indoor === null ? 'Not Recommended' : startDate(indoor)}
             </Text>
           </View>
           <View style={styles.dateCard}>
-            <Text style={styles.centerWhite}>Outdoor:</Text>
-            <Text style={[styles.centerWhite, { flexWrap: "wrap" }]}>
+            <Text style={[styles.whiteText, { marginBottom: 5 }]}>Outdoor:</Text>
+            <Text style={[styles.whiteText, { flexWrap: "wrap" }]}>
               {outdoor === null ? 'Not Recommended' : startDate(outdoor)}
             </Text>
           </View>

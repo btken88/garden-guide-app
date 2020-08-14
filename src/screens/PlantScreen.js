@@ -1,20 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Button } from 'react-native'
 import GrowingInfo from '../components/GrowingInfo'
 
 // const varietyURL = 'https://garden-guide.herokuapp.com/varieties/'
 const varietyURL = 'http://localhost:5000/varieties/'
+const userPlantsURL = 'http://localhost:5000/user_plants'
 
-export default function SpeciesScreen({ route }) {
-  const varietyID = route.params.id
+export default function PlantScreen({ route, userPlants, setUserPlants, tokenValue }) {
+  const varietyId = route.params.id
 
   const [plant, setPlant] = useState({})
+  const [owned, setOwned] = useState(false)
 
   useEffect(() => {
-    fetch(varietyURL + varietyID)
+    fetch(varietyURL + varietyId)
       .then(response => response.json())
       .then(data => setPlant(data[0]))
   }, [])
+
+  useEffect(() => {
+    const isOwned = userPlants.some(plant => plant.id === varietyId)
+    setOwned(isOwned)
+  }, [userPlants])
+
+  function savePlant() {
+    fetch(userPlantsURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': tokenValue
+      },
+      body: JSON.stringify({ varietyId })
+    }).then(response => response.json())
+      .then(([userPlant]) => setUserPlants([...userPlants, userPlant]))
+      .catch(err => alert(err.message))
+  }
 
   function displayPlant() {
     return (
@@ -23,6 +43,7 @@ export default function SpeciesScreen({ route }) {
         <Image style={styles.image} source={{ uri: plant.image }} alt={plant.commonName} />
         <Text style={styles.description}>{plant.description}</Text>
         <GrowingInfo plant={plant} />
+        {owned ? null : <Button title='Add to Garden' onPress={savePlant} />}
       </>
     )
   }

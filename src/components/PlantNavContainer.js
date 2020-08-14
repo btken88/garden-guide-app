@@ -6,7 +6,7 @@ import PlantScreen from '../screens/PlantScreen';
 
 const Stack = createStackNavigator();
 
-export default function PlantNavContainer() {
+export default function PlantNavContainer({ userPlants, setUserPlants, tokenValue }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -18,8 +18,13 @@ export default function PlantNavContainer() {
         component={VarietiesScreen} />
       <Stack.Screen
         name="Plant Variety"
-        component={PlantScreen}
-        options={({ route }) => ({ title: route.params.name })} />
+        options={({ route }) => ({ title: route.params.name })}>
+        {(props) => <PlantScreen
+          {...props}
+          userPlants={userPlants}
+          setUserPlants={setUserPlants}
+          tokenValue={tokenValue} />}
+      </Stack.Screen>
     </Stack.Navigator>
   )
 }

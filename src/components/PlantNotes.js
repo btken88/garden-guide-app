@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, Button } from 'react-native'
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
 
 const userPlantsURL = 'http://localhost:5000/user_plants/'
 
@@ -15,13 +15,18 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValu
   function showNote() {
     if (!edit) return (
       <>
-        <Text>{plant.notes}</Text>
+        <Text style={styles.description}>{plant.notes}</Text>
         <Button title="Edit" onPress={() => setEdit(true)} color='#033a07' />
       </>
     )
     else return (
       <>
-        <TextInput value={note} onChangeText={text => setNote(text)} />
+        <TextInput
+          textAlignVertical='top'
+          multiline={true}
+          style={styles.edit}
+          value={note}
+          onChangeText={text => setNote(text)} />
         <Button title="Save" onPress={saveNote} color='#033a07' />
       </>
     )
@@ -30,8 +35,13 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValu
   function addNote() {
     return (
       <>
-        <Text>Add a note below</Text>
-        <TextInput value={note} onChangeText={text => setNote(text)} />
+        <Text style={styles.description}>Add a note below</Text>
+        <TextInput
+          textAlignVertical='top'
+          multiline={true}
+          style={styles.edit}
+          value={note}
+          onChangeText={text => setNote(text)} />
         <Button title="Save" onPress={saveNote} color='#033a07' />
       </>
     )
@@ -58,3 +68,14 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValu
       }).catch(err => alert(err.message))
   }
 }
+
+const styles = StyleSheet.create({
+  description: {
+    marginHorizontal: 20,
+    fontSize: 16
+  },
+  edit: {
+    marginHorizontal: 20,
+    fontSize: 16,
+  },
+})
