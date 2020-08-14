@@ -20,7 +20,7 @@ export default function GardenNavContainer({ tokenValue, userPlants, setUserPlan
         name="Plant Variety"
         options={({ route }) => ({ title: route.params.name })}>
         {(props) => <UserPlantScreen {...props}
-          plants={userPlants}
+          userPlants={userPlants}
           setUserPlants={setUserPlants}
           tokenValue={tokenValue} />}
       </Stack.Screen>

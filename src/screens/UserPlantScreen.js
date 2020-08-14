@@ -14,7 +14,11 @@ export default function UserPlantScreen({ route, setUserPlants, userPlants, toke
       <Image style={styles.image} source={{ uri: plant.image }} alt={plant.commonName} />
       <Text style={styles.description}>{plant.description}</Text>
       <GrowingInfo plant={plant} />
-      <PlantNotes setUserPlants={setUserPlants} userPlants={userPlants} tokenValue={tokenValue} plant={plant} />
+      <PlantNotes
+        setUserPlants={setUserPlants}
+        userPlants={userPlants}
+        tokenValue={tokenValue}
+        plant={plant} />
     </View>
   )
 }

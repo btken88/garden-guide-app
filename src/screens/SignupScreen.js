@@ -14,7 +14,7 @@ const initialState = {
   password: ''
 }
 
-export default function SignUpScreen({ navigation, setToken }) {
+export default function SignUpScreen({ navigation, setToken, setTokenValue }) {
   const [user, setUser] = useState(initialState)
 
   function signUp() {
@@ -26,6 +26,7 @@ export default function SignUpScreen({ navigation, setToken }) {
       .then(({ token }) => {
         AsyncStorage.setItem('token', token)
         setToken(true)
+        setTokenValue(token)
       })
       .catch(err => alert(err.message))
   }

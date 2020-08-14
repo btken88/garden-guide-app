@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, Button } from 'react-native'
 
-export default function PlantNotes({ plant, userPlants, setUserPlants, TokenValue }) {
+const userPlantsURL = 'http://localhost:5000/user_plants/'
+
+export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValue }) {
   const [edit, setEdit] = useState(false)
   const [note, setNote] = useState(plant.notes || '')
   return (
@@ -11,9 +13,9 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, TokenValu
   )
 
   function showNote() {
-    if (edit) return (
+    if (!edit) return (
       <>
-        <Text>{plant.note}</Text>
+        <Text>{plant.notes}</Text>
         <Button title="Edit" onPress={() => setEdit(true)} color='#033a07' />
       </>
     )
@@ -35,5 +37,24 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, TokenValu
     )
   }
   function saveNote() {
+    fetch(userPlantsURL + plant.user_plant_id, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': tokenValue
+      },
+      body: JSON.stringify({ notes: note })
+    }).then(response => response.json())
+      .then(result => { if (result.error) return alert(result.error) })
+      .then(() => {
+        plant.notes = note
+        const newUserPlants = userPlants.map(oldPlant => {
+          return oldPlant.user_plant_id === plant.user_plant_id
+            ? plant
+            : oldPlant
+        })
+        setUserPlants(newUserPlants)
+        setEdit(false)
+      }).catch(err => alert(err.message))
   }
 }

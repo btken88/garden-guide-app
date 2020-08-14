@@ -10,7 +10,7 @@ const initialState = {
 
 const loginURL = 'http://localhost:5000/login'
 
-export default function SignInScreen({ navigation, setToken }) {
+export default function SignInScreen({ navigation, setToken, setTokenValue }) {
   const [user, setUser] = useState(initialState)
 
   function logIn() {
@@ -22,6 +22,7 @@ export default function SignInScreen({ navigation, setToken }) {
       .then(({ token }) => {
         AsyncStorage.setItem('token', token)
         setToken(true)
+        setTokenValue(token)
       })
       .catch(error => console.error(error.error))
   }

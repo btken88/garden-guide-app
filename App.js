@@ -24,6 +24,7 @@ export default function App() {
   const [userPlants, setUserPlants] = useState([])
 
   useEffect(() => {
+    console.log('fetch userplants', tokenValue)
     fetch(userPlantsURL, {
       headers: {
         'Content-Type': 'application/json',
@@ -48,10 +49,10 @@ export default function App() {
   const signInNavigation = (
     <Stack.Navigator screenOptions={{ headerShown: false }} >
       <Stack.Screen name="Sign In">
-        {(params) => <SignInScreen {...params} setToken={setToken} />}
+        {(params) => <SignInScreen {...params} setToken={setToken} setTokenValue={setTokenValue} />}
       </Stack.Screen>
       <Stack.Screen name="Sign Up">
-        {(params) => <SignUpScreen {...params} setToken={setToken} />}
+        {(params) => <SignUpScreen {...params} setToken={setToken} setTokenValue={setTokenValue} />}
       </Stack.Screen>
     </Stack.Navigator>
   )
