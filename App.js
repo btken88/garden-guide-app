@@ -24,7 +24,6 @@ export default function App() {
   const [userPlants, setUserPlants] = useState([])
 
   useEffect(() => {
-    console.log('fetch userplants', tokenValue)
     fetch(userPlantsURL, {
       headers: {
         'Content-Type': 'application/json',

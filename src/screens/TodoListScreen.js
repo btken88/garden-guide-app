@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, Text, ImageBackground, StyleSheet, Button, FlatList } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage'
+import { SafeAreaView, Text, ImageBackground, StyleSheet, Button, FlatList, View } from 'react-native'
 import TodoForm from '../components/TodoForm'
 import TodoCard from '../components/TodoCard'
 
@@ -51,23 +50,25 @@ export default function TodoListScreen({ tokenValue }) {
   }
 
   return (
-    <SafeAreaView>
-      <ImageBackground source={image} style={styles.backgroundImage}>
-        <Text style={styles.header}>To Do List</Text>
-      </ImageBackground>
-      {newTodo
-        ? <TodoForm
-          setNewTodo={setNewTodo}
-          todos={todos}
-          setTodos={setTodos}
-          tokenValue={tokenValue} />
-        : <Button
-          onPress={() => setNewTodo(true)}
-          title='Add a New Todo'
-          color='#033a07' />}
-      {todos.length
-        ? todosList()
-        : <Text style={styles.notodo}>No Todos Yet</Text>}
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.fill}>
+        <ImageBackground source={image} style={styles.backgroundImage}>
+          <Text style={styles.header}>To Do List</Text>
+        </ImageBackground>
+        {newTodo
+          ? <TodoForm
+            setNewTodo={setNewTodo}
+            todos={todos}
+            setTodos={setTodos}
+            tokenValue={tokenValue} />
+          : <Button
+            onPress={() => setNewTodo(true)}
+            title='Add a New Todo'
+            color='#033a07' />}
+        {todos.length
+          ? todosList()
+          : <Text style={styles.notodo}>No Todos Yet</Text>}
+      </View>
     </SafeAreaView>
   )
 }
@@ -76,8 +77,17 @@ const [red, green, brown, yellow, black, white] = ['#7a152e', '#033a07', '#461c0
 
 
 const styles = StyleSheet.create({
+  fill: {
+    flex: 1,
+    backgroundColor: '#eef7ee'
+  },
   backgroundImage: {
     width: '100%',
+    shadowColor: '#033a07',
+    shadowOpacity: .2,
+    shadowOffset: { width: 0, height: .5 },
+    shadowRadius: 2,
+    elevation: 1.5
   },
   header: {
     fontSize: 30,
@@ -86,7 +96,7 @@ const styles = StyleSheet.create({
     color: brown,
     textShadowColor: white,
     textShadowRadius: 3,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   notodo: {
     fontSize: 20,

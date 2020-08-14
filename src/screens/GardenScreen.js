@@ -32,7 +32,14 @@ const [red, green, brown, yellow, black, white] = ['#7a152e', '#033a07', '#461c0
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
-    marginBottom: 10
+    marginBottom: 8,
+    shadowColor: "#033a07",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   header: {
     fontSize: 30,

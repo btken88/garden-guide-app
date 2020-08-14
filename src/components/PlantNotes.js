@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native'
 
 const userPlantsURL = 'http://localhost:5000/user_plants/'
 
@@ -14,10 +14,9 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValu
 
   function showNote() {
     if (!edit) return (
-      <>
-        <Text style={styles.description}>{plant.notes}</Text>
-        <Button title="Edit" onPress={() => setEdit(true)} color='#033a07' />
-      </>
+      <TouchableOpacity onPress={() => setEdit(true)}>
+        <Text overflow='hidden' style={styles.description}>{plant.notes}</Text>
+      </TouchableOpacity>
     )
     else return (
       <>
@@ -27,7 +26,10 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValu
           style={styles.edit}
           value={note}
           onChangeText={text => setNote(text)} />
-        <Button title="Save" onPress={saveNote} color='#033a07' />
+        <View style={styles.buttonContainer}>
+          <Button title="Save" onPress={saveNote} color='#033a07' />
+          <Button title="Cancel" onPress={() => setEdit(false)} color='#033a07' />
+        </View>
       </>
     )
   }
@@ -35,8 +37,8 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValu
   function addNote() {
     return (
       <>
-        <Text style={styles.description}>Add a note below</Text>
         <TextInput
+          placeholder='Add a note'
           textAlignVertical='top'
           multiline={true}
           style={styles.edit}
@@ -72,10 +74,32 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValu
 const styles = StyleSheet.create({
   description: {
     marginHorizontal: 20,
-    fontSize: 16
+    fontSize: 16,
+    backgroundColor: '#f5f5f5',
+    padding: 8,
+    borderRadius: 5,
+    shadowColor: '#033a07',
+    shadowOpacity: .2,
+    shadowOffset: { width: 0, height: .5 },
+    shadowRadius: 2,
+    elevation: 1.5,
   },
   edit: {
     marginHorizontal: 20,
     fontSize: 16,
+    backgroundColor: '#f5f5f5',
+    padding: 8,
+    borderRadius: 5,
+    shadowColor: '#033a07',
+    shadowOpacity: .2,
+    shadowOffset: { width: 0, height: .5 },
+    shadowRadius: 2,
+    elevation: 1.5,
   },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    marginHorizontal: 40
+  }
 })

@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { ScrollView, Text, StyleSheet, Image, Button, View } from 'react-native'
 import GrowingInfo from '../components/GrowingInfo'
 import PlantNotes from '../components/PlantNotes'
 
 // const varietyURL = 'https://garden-guide.herokuapp.com/varieties/'
 const varietyURL = 'http://localhost:5000/varieties/'
+const userPlantURL = 'http://localhost:5000/user_plants/'
 
-export default function UserPlantScreen({ route, setUserPlants, userPlants, tokenValue }) {
+export default function UserPlantScreen({ navigation, route, setUserPlants, userPlants, tokenValue }) {
   const plant = route.params.plant
 
+  function deletePlant() {
+    fetch(userPlantURL + plant.user_plant_id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': tokenValue
+      }
+    }).then(() => {
+      const newUserPlants = userPlants.filter(oldPlant => {
+        return oldPlant.user_plant_id !== plant.user_plant_id
+      })
+      setUserPlants(newUserPlants)
+      navigation.navigate('My Garden')
+    }).catch(err => alert(err))
+  }
+
   return (
-    <View style={styles.fill}>
-      <Image style={styles.image} source={{ uri: plant.image }} alt={plant.commonName} />
+    <ScrollView style={styles.fill}>
+      <View style={styles.imageShadow}>
+        <Image style={styles.image} source={{ uri: plant.image }} alt={plant.commonName} />
+      </View>
       <Text style={styles.description}>{plant.description}</Text>
       <GrowingInfo plant={plant} />
       <PlantNotes
@@ -19,14 +38,15 @@ export default function UserPlantScreen({ route, setUserPlants, userPlants, toke
         userPlants={userPlants}
         tokenValue={tokenValue}
         plant={plant} />
-    </View>
+      <Button title='Delete Plant' onPress={deletePlant} color='#033a07' />
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   fill: {
     flex: 1,
-    backgroundColor: '#f5f5f5'
+    backgroundColor: '#eef7ee'
   },
   header: {
     fontSize: 20,
@@ -35,11 +55,26 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 200,
-    margin: 10,
-    borderRadius: 5
+    borderRadius: 2
   },
   description: {
     marginHorizontal: 20,
-    fontSize: 16
+    fontSize: 16,
+    backgroundColor: '#f5f5f5',
+    padding: 8,
+    shadowColor: '#033a07',
+    shadowOpacity: .2,
+    shadowOffset: { width: 0, height: .5 },
+    shadowRadius: 2,
+    elevation: 1.5
+  },
+  imageShadow: {
+    marginHorizontal: 20,
+    marginVertical: 8,
+    shadowColor: '#033a07',
+    shadowOpacity: .2,
+    shadowOffset: { width: 0, height: .5 },
+    shadowRadius: 2,
+    elevation: 1.5,
   }
 })

@@ -43,7 +43,7 @@ export default function PlantScreen({ route, userPlants, setUserPlants, tokenVal
         <Image style={styles.image} source={{ uri: plant.image }} alt={plant.commonName} />
         <Text style={styles.description}>{plant.description}</Text>
         <GrowingInfo plant={plant} />
-        {owned ? null : <Button title='Add to Garden' onPress={savePlant} />}
+        {owned ? null : <Button title='Add to Garden' onPress={savePlant} color='#033a07' />}
       </>
     )
   }
@@ -57,7 +57,7 @@ export default function PlantScreen({ route, userPlants, setUserPlants, tokenVal
 const styles = StyleSheet.create({
   fill: {
     flex: 1,
-    backgroundColor: '#f5f5f5'
+    backgroundColor: '#eef7ee'
   },
   header: {
     fontSize: 20,
@@ -66,11 +66,19 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 200,
-    margin: 10,
-    borderRadius: 5
+    marginVertical: 8,
+    marginHorizontal: 20,
+    borderRadius: 2
   },
   description: {
     marginHorizontal: 20,
-    fontSize: 16
-  }
+    fontSize: 16,
+    backgroundColor: '#f5f5f5',
+    padding: 8,
+    shadowColor: '#033a07',
+    shadowOpacity: .2,
+    shadowOffset: { width: 0, height: .5 },
+    shadowRadius: 2,
+    elevation: 1.5
+  },
 })

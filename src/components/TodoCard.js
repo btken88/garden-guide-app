@@ -16,20 +16,29 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
     todoCard: {
       margin: 10,
       padding: 8,
-      borderColor: '#033a07',
-      borderWidth: 1,
-      borderRadius: 5,
-      backgroundColor: backgroundColor()
+      borderRadius: 2,
+      backgroundColor: backgroundColor(),
+      shadowColor: '#033a07',
+      shadowOpacity: .2,
+      shadowOffset: { width: 0, height: .5 },
+      shadowRadius: 2,
+      elevation: 1.5
     },
     input: {
       textAlignVertical: 'top',
       height: 100,
       borderRadius: 5,
-      borderColor: '#033a07',
+      borderColor: '#eef7ee',
       borderWidth: 1,
+      backgroundColor: '#f5f5f5',
       margin: 10,
       padding: 5,
-      fontSize: 16
+      fontSize: 16,
+      shadowColor: '#033a07',
+      shadowOpacity: .2,
+      shadowOffset: { width: 0, height: .5 },
+      shadowRadius: 2,
+      elevation: 1.5
     },
     text: {
       fontSize: 16

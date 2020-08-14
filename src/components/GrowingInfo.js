@@ -49,7 +49,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 20,
     padding: 15,
-    borderRadius: 5
+    shadowColor: '#033a07',
+    shadowOpacity: .2,
+    shadowOffset: { width: 0, height: .5 },
+    shadowRadius: 2,
+    elevation: 1.5
   },
   scientific: {
     fontStyle: 'italic',
@@ -65,17 +69,17 @@ const styles = StyleSheet.create({
   seedCard: {
     backgroundColor: '#033a07',
     padding: 8,
-    borderRadius: 5,
+    borderRadius: 2,
     marginBottom: 10
   },
   habit: {
     padding: 8,
-    borderRadius: 5,
+    borderRadius: 2,
     backgroundColor: '#7a152e'
   },
   maturity: {
     padding: 8,
-    borderRadius: 5,
+    borderRadius: 2,
     backgroundColor: '#461c0c'
   },
   center: {
