@@ -9,7 +9,7 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
   const [edit, setEdit] = useState(false)
 
   function backgroundColor() {
-    return todo.urgent ? '#f5f6a2' : '#f5f5f5'
+    return todo.urgent ? '#fafad1' : '#f5f5f5'
   }
 
   const styles = StyleSheet.create({

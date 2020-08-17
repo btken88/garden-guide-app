@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, Image, StyleSheet, FlatList } from 'react-native'
+import { ScrollView, View, Text, Image, StyleSheet, FlatList, Button } from 'react-native'
 import PlantCard from '../components/PlantCard'
-import { ScrollView } from 'react-native-gesture-handler'
+import AddVarietyForm from '../components/AddVarietyForm'
 
 // const plantsBaseURL = 'https://garden-guide.herokuapp.com/plants/'
 // const varietiesBaseURL = 'https://garden-guide.herokuapp.com/varieties/'
@@ -9,20 +9,33 @@ import { ScrollView } from 'react-native-gesture-handler'
 const plantsBaseURL = 'http://localhost:5000/plants/'
 const varietiesBaseURL = 'http://localhost:5000/varieties/'
 
-export default function VarietiesScreen({ route, navigation }) {
-  const plantID = route.params.id
+export default function VarietiesScreen({ route, navigation, tokenValue }) {
+  const plantId = route.params.id
+
+  const blankFormState = {
+    plantId: plantId,
+    scientificName: "",
+    commonName: "",
+    description: "",
+    maturity: null,
+    outdoor: null,
+    indoor: null,
+    habit: null,
+    image: ""
+  }
 
   const [plant, setPlant] = useState({})
   const [varieties, setVarieties] = useState([])
+  const [showAddForm, setShowAddForm] = useState(false)
 
   useEffect(() => {
-    fetch(plantsBaseURL + plantID)
+    fetch(plantsBaseURL + plantId)
       .then(response => response.json())
       .then(data => setPlant(data[0]))
   }, [])
 
   useEffect(() => {
-    fetch(varietiesBaseURL + `plantId/${plantID}`)
+    fetch(varietiesBaseURL + `plantId/${plantId}`)
       .then(response => response.json())
       .then(setVarieties)
   }, [])
@@ -40,39 +53,65 @@ export default function VarietiesScreen({ route, navigation }) {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.fill}>
       {plant.name
         ? <>
-          <Text style={styles.headline}>{plant.name}</Text>
           <Image style={styles.image} source={{ uri: plant.image }} alt={plant.name} />
-          <ScrollView style={styles.scroll}>
-            <Text style={styles.description}>{plant.description}</Text>
-          </ScrollView>
+          <View style={styles.scroll}>
+            <ScrollView>
+              <Text style={styles.description}>{plant.description}</Text>
+            </ScrollView>
+          </View>
         </>
         : null}
       {varieties.length
         ? varietyList()
         : null}
+      {showAddForm
+        ? <AddVarietyForm
+          plantId={plantId}
+          setShowAddForm={setShowAddForm}
+          varieties={varieties}
+          setVarieties={setVarieties}
+          tokenValue={tokenValue} />
+        : <Button
+          title="Add a Variety"
+          color="#033a07"
+          onPress={() => setShowAddForm(true)}
+          style={styles.bottom} />}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   image: {
-    height: 200,
+    height: 180,
     margin: 10,
     borderRadius: 5
   },
-  headline: {
-    textAlign: "center",
-    fontSize: 20,
-    marginTop: 10
+  fill: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    backgroundColor: '#eef7ee'
   },
   description: {
     fontSize: 16,
-    marginHorizontal: 20
   },
   scroll: {
-    marginBottom: 10
+    padding: 10,
+    borderRadius: 2,
+    marginHorizontal: 20,
+    maxHeight: 150,
+    marginBottom: 10,
+    backgroundColor: '#f5f5f5',
+    shadowColor: '#033a07',
+    shadowOpacity: .2,
+    shadowOffset: { width: 0, height: .5 },
+    shadowRadius: 2,
+    elevation: 1.5
+  },
+  bottom: {
+    alignSelf: 'flex-end'
   }
 })

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { SafeAreaView, Text, ImageBackground, StyleSheet, Button, FlatList, View } from 'react-native'
 import TodoForm from '../components/TodoForm'
 import TodoCard from '../components/TodoCard'
+import HeaderBar from '../components/HeaderBar'
 
 const todosURL = 'http://localhost:5000/todos'
 const image = require('../../assets/colorful-vegetables-low.jpg')
@@ -52,9 +53,7 @@ export default function TodoListScreen({ tokenValue }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.fill}>
-        <ImageBackground source={image} style={styles.backgroundImage}>
-          <Text style={styles.header}>To Do List</Text>
-        </ImageBackground>
+        <HeaderBar title='To Do List' />
         {newTodo
           ? <TodoForm
             setNewTodo={setNewTodo}

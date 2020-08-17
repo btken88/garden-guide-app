@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { SafeAreaView, View, Text, TextInput, Button, ImageBackground, StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
-
-const image = require('../../assets/colorful-vegetables-low.jpg')
+import HeaderBar from '../components/HeaderBar'
 
 const signUpURL = 'http://localhost:5000/signup'
 
@@ -33,9 +32,7 @@ export default function SignUpScreen({ navigation, setToken, setTokenValue }) {
 
   return (
     <SafeAreaView>
-      <ImageBackground source={image} style={styles.backgroundImage}>
-        <Text style={styles.header}>Sign Up</Text>
-      </ImageBackground>
+      <HeaderBar title='Sign Up' />
       <View style={styles.nameContainer}>
         <View>
           <Text style={styles.label}>First Name</Text>

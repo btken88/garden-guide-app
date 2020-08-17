@@ -39,7 +39,6 @@ export default function PlantScreen({ route, userPlants, setUserPlants, tokenVal
   function displayPlant() {
     return (
       <>
-        <Text style={styles.header}>{plant.commonName}</Text>
         <Image style={styles.image} source={{ uri: plant.image }} alt={plant.commonName} />
         <Text style={styles.description}>{plant.description}</Text>
         <GrowingInfo plant={plant} />

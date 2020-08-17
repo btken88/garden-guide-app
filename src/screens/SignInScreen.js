@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { View, Button, TextInput, SafeAreaView, Text, ImageBackground, StyleSheet } from 'react-native'
+import { View, Button, TextInput, SafeAreaView, Text, StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
+import HeaderBar from '../components/HeaderBar'
 
-const image = require('../../assets/colorful-vegetables-low.jpg')
 const initialState = {
   email: '',
   password: ''
@@ -29,9 +29,7 @@ export default function SignInScreen({ navigation, setToken, setTokenValue }) {
 
   return (
     <SafeAreaView>
-      <ImageBackground source={image} style={styles.backgroundImage}>
-        <Text style={styles.header}>Sign In</Text>
-      </ImageBackground>
+      <HeaderBar title='Sign In' />
       <Text style={styles.label}>Email</Text>
       <TextInput
         autoCapitalize="none"
@@ -56,7 +54,7 @@ export default function SignInScreen({ navigation, setToken, setTokenValue }) {
           color={green}
           onPress={() => navigation.navigate('Sign Up')} />
       </View>
-    </SafeAreaView>
+    </SafeAreaView >
   )
 }
 

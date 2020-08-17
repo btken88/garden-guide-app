@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, SafeAreaView, StyleSheet, FlatList } from 'react-native'
-import { AppLoading } from 'expo'
 import PlantCard from '../components/PlantCard'
+import HeaderBar from '../components/HeaderBar'
 
 // const baseURL = 'https://garden-guide.herokuapp.com'
 const baseURL = 'http://localhost:5000'
@@ -17,18 +17,20 @@ export default function PlantListScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.screenFill}>
-      <Text style={styles.header}>Select a plant for more info</Text>
-      {plants.length
-        ? <FlatList
-          data={plants}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => {
-            return <PlantCard
-              plant={item}
-              navigation={navigation}
-              location='Plant Details' />
-          }} />
-        : null}
+      <View style={styles.fill}>
+        <HeaderBar title='Our Plants' />
+        {plants.length
+          ? <FlatList
+            data={plants}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => {
+              return <PlantCard
+                plant={item}
+                navigation={navigation}
+                location='Plant Details' />
+            }} />
+          : null}
+      </View>
     </SafeAreaView>
   )
 }
@@ -39,6 +41,10 @@ const styles = StyleSheet.create({
   screenFill: {
     flex: 1,
     backgroundColor: white
+  },
+  fill: {
+    backgroundColor: '#eef7ee',
+    flex: 1
   },
   header: {
     fontSize: 20,

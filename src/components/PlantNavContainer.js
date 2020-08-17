@@ -15,7 +15,9 @@ export default function PlantNavContainer({ userPlants, setUserPlants, tokenValu
         options={{ headerShown: false }} />
       <Stack.Screen
         name="Plant Details"
-        component={VarietiesScreen} />
+        options={({ route }) => ({ title: route.params.name })}>
+        {(props) => <VarietiesScreen {...props} tokenValue={tokenValue} />}
+      </Stack.Screen>
       <Stack.Screen
         name="Plant Variety"
         options={({ route }) => ({ title: route.params.name })}>
