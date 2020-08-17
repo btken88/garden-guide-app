@@ -59,6 +59,7 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
   function markDone() {
     const updatedTodo = { ...todo, done: !todo.done }
     setTodo(updatedTodo)
+    console.log('updated', updatedTodo)
     fetch(todoURL + todo.id, {
       method: 'PATCH',
       headers: {
@@ -68,6 +69,7 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
       body: JSON.stringify(updatedTodo)
     }).then(response => response.json())
       .then(newTodo => {
+        console.log('new todo', newTodo)
         const updatedTodos = todos.map(todo => {
           return todo.id === newTodo.id ? newTodo : todo
         })

@@ -10,6 +10,8 @@ const image = require('../../assets/colorful-vegetables-low.jpg')
 export default function TodoListScreen({ tokenValue }) {
   const [newTodo, setNewTodo] = useState(false)
   const [todos, setTodos] = useState([])
+  const [done, setDone] = useState([])
+  const [notDone, setNotDone] = useState([])
 
   useEffect(() => {
     fetch(todosURL, {
@@ -23,11 +25,18 @@ export default function TodoListScreen({ tokenValue }) {
       .catch(err => console.error(err.message))
   }, [])
 
+  useEffect(() => {
+    const finished = todos.filter(todo => todo.done === true)
+    const unfinished = todos.filter(todo => todo.done !== true)
+    setDone(finished)
+    setNotDone(unfinished)
+  }, [todos])
+
   function todosList() {
     return (
       <>
-        {/* <FlatList
-          data={inProgress}
+        <FlatList
+          data={notDone}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => {
             return <TodoCard
@@ -35,9 +44,9 @@ export default function TodoListScreen({ tokenValue }) {
               todos={todos}
               setTodos={setTodos}
               tokenValue={tokenValue} />
-          }} /> */}
+          }} />
         <FlatList
-          data={todos}
+          data={done}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => {
             return <TodoCard

@@ -26,7 +26,6 @@ export default function HomeScreen({ setToken, tokenValue }) {
         <HeaderBar title='Garden Guide' />
         <View style={styles.newFeatures}>
           <Text style={styles.featuresHeader}>New Features Coming Soon:</Text>
-          <Text style={styles.featuresContent}>See the upcoming weather for your zip code</Text>
           <Text style={styles.featuresContent}>See dates to plant seeds based on your zip code</Text>
           <Text style={styles.featuresContent}>Add new plant varieties to our database</Text>
           <Text style={styles.featuresContent}>Get notifications for when to plant your seeds</Text>
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
     margin: 25,
     padding: 20,
     backgroundColor: '#f7f7ba',
-    transform: [{ rotate: '2deg' }],
+    transform: [{ rotate: '1.5deg' }],
     shadowColor: '#033a07',
     shadowOpacity: .2,
     shadowOffset: { width: 0, height: .5 },
