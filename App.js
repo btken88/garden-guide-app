@@ -64,7 +64,7 @@ export default function App() {
           tabBarIcon: () => <MaterialCommunityIcons name="home" size={24} color='#033a07' />,
           activeTintColor: '#033A07'
         }}>
-        {(props) => <HomeScreen {...props} setToken={setToken} />}
+        {(props) => <HomeScreen {...props} setToken={setToken} tokenValue={tokenValue} />}
       </Tab.Screen>
       <Tab.Screen
         name="Plants"

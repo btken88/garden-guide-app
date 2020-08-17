@@ -1,10 +1,24 @@
-import React from 'react'
-import { View, Text, SafeAreaView, ImageBackground, StyleSheet, Button } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, Text, SafeAreaView, StyleSheet, Button } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import HeaderBar from '../components/HeaderBar'
+import Weather from '../components/Weather'
 
-export default function HomeScreen({ setToken }) {
+const weatherURL = 'http://localhost:5000/weather'
 
+export default function HomeScreen({ setToken, tokenValue }) {
+  const [weather, setWeather] = useState({})
+
+  useEffect(() => {
+    fetch(weatherURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': tokenValue
+      }
+    }).then(response => response.json())
+      .then(setWeather)
+  }, [])
 
   return (
     <SafeAreaView style={styles.screenFill}>
@@ -19,6 +33,7 @@ export default function HomeScreen({ setToken }) {
           <Text style={styles.featuresContent}>Add target completion dates to your todos</Text>
           <Text style={styles.featuresContent}>See alerts on the home page for upcoming planting dates and todos</Text>
         </View>
+        {weather.lat ? <Weather weather={weather} /> : null}
         <Button
           title="Log Out"
           onPress={() => {
