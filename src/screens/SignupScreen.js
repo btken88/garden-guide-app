@@ -22,10 +22,14 @@ export default function SignUpScreen({ navigation, setToken, setTokenValue }) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user)
     }).then(response => response.json())
-      .then(({ token }) => {
-        AsyncStorage.setItem('token', token)
-        setToken(true)
-        setTokenValue(token)
+      .then((result) => {
+        if (result.token) {
+          AsyncStorage.setItem('token', result.token)
+          setToken(true)
+          setTokenValue(result.token)
+        } else {
+          alert(result.error)
+        }
       })
       .catch(err => alert(err.message))
   }

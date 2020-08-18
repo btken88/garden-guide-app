@@ -14,6 +14,7 @@ export default function SignInScreen({ navigation, setToken, setTokenValue }) {
   const [user, setUser] = useState(initialState)
 
   function logIn() {
+    console.log(user)
     fetch(loginURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -23,7 +24,7 @@ export default function SignInScreen({ navigation, setToken, setTokenValue }) {
         if (result.token) {
           AsyncStorage.setItem('token', result.token)
           setToken(true)
-          setTokenValue(token)
+          setTokenValue(result.token)
         } else {
           alert(result.error)
         }
