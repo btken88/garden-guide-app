@@ -19,10 +19,14 @@ export default function SignInScreen({ navigation, setToken, setTokenValue }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user)
     }).then(response => response.json())
-      .then(({ token }) => {
-        AsyncStorage.setItem('token', token)
-        setToken(true)
-        setTokenValue(token)
+      .then(result => {
+        if (result.token) {
+          AsyncStorage.setItem('token', result.token)
+          setToken(true)
+          setTokenValue(token)
+        } else {
+          alert(result.error)
+        }
       })
       .catch(error => console.error(error.error))
   }
