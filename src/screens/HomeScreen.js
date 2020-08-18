@@ -27,7 +27,6 @@ export default function HomeScreen({ setToken, tokenValue }) {
         <View style={styles.newFeatures}>
           <Text style={styles.featuresHeader}>New Features Coming Soon:</Text>
           <Text style={styles.featuresContent}>See dates to plant seeds based on your zip code</Text>
-          <Text style={styles.featuresContent}>Add new plant varieties to our database</Text>
           <Text style={styles.featuresContent}>Get notifications for when to plant your seeds</Text>
           <Text style={styles.featuresContent}>Add target completion dates to your todos</Text>
           <Text style={styles.featuresContent}>See alerts on the home page for upcoming planting dates and todos</Text>

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: '#461c0c',
     textShadowColor: "#f5f5f5",
-    textShadowRadius: 3,
+    textShadowRadius: 2,
     fontWeight: "bold"
   },
   backgroundImage: {

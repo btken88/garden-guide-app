@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginHorizontal: 20,
     marginTop: 10,
-    borderRadius: 5,
+    borderRadius: 2,
     flex: 1,
     backgroundColor: '#f5f5f5',
     shadowColor: '#033a07',
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     marginBottom: 3,
-    borderRadius: 5
+    borderRadius: 2
   },
   text: {
     textAlign: "center",

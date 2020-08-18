@@ -86,8 +86,9 @@ export default function VarietiesScreen({ route, navigation, tokenValue }) {
 const styles = StyleSheet.create({
   image: {
     height: 180,
-    margin: 10,
-    borderRadius: 5
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderRadius: 3
   },
   fill: {
     display: "flex",
