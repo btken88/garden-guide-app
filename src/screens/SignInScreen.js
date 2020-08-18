@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    marginVertical: 10
   },
 })

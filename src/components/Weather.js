@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: .5 },
     shadowRadius: 2,
     elevation: 1.5,
-    padding: 10
+    padding: 10,
+    marginBottom: 20
   },
   forecast: {
     display: 'flex',
