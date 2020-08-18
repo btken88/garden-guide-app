@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, TextInput, Button, ImageBackground, StyleSheet } from 'react-native'
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import HeaderBar from '../components/HeaderBar'
 
@@ -80,11 +80,12 @@ export default function SignUpScreen({ navigation, setToken, setTokenValue }) {
             value={user.password}
             onChangeText={text => setUser({ ...user, password: text })} />
           <View style={styles.buttonContainer}>
-            <Button title="Sign Up" color={green} onPress={signUp} />
-            <Button
-              title="Back to Sign In"
-              color={green}
-              onPress={() => navigation.navigate('Sign In')} />
+            <TouchableOpacity onPress={signUp}>
+              <Text style={styles.button}>Sign Up</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
+              <Text style={styles.button}>Back to Sign In</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -96,14 +97,14 @@ const [red, green, brown, yellow, black, white] = ['#7a152e', '#033a07', '#461c0
 
 const styles = StyleSheet.create({
   fill: {
-    backgroundColor: '#eef7ee',
+    backgroundColor: '#033a07',
     height: '100%',
   },
   card: {
     backgroundColor: '#f5f5f5',
     marginHorizontal: 20,
     marginTop: 60,
-    borderRadius: 3,
+    borderRadius: 2,
     shadowColor: '#033a07',
     shadowOpacity: .2,
     shadowOffset: { width: 0, height: .5 },
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#fafafa',
-    borderRadius: 3,
+    borderRadius: 2,
     fontSize: 16,
     padding: 5,
     margin: 8,
@@ -138,5 +139,12 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between"
+  },
+  button: {
+    color: '#f5f5f5',
+    backgroundColor: '#033a07',
+    padding: 5,
+    textAlign: "center",
+    fontSize: 18,
   }
 })

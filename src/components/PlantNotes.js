@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 
 const userPlantsURL = 'http://localhost:5000/user_plants/'
 
@@ -27,8 +27,12 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValu
           value={note}
           onChangeText={text => setNote(text)} />
         <View style={styles.buttonContainer}>
-          <Button title="Save" onPress={saveNote} color='#033a07' />
-          <Button title="Cancel" onPress={() => setEdit(false)} color='#033a07' />
+          <TouchableOpacity onPress={saveNote}>
+            <Text style={styles.button}>Save</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setEdit(false)}>
+            <Text style={styles.button}>Cancel</Text>
+          </TouchableOpacity>
         </View>
       </>
     )
@@ -44,7 +48,9 @@ export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValu
           style={styles.edit}
           value={note}
           onChangeText={text => setNote(text)} />
-        <Button title="Save" onPress={saveNote} color='#033a07' />
+        <TouchableOpacity onPress={saveNote}>
+          <Text style={styles.button}>Save</Text>
+        </TouchableOpacity>
       </>
     )
   }
@@ -77,7 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: '#f5f5f5',
     padding: 8,
-    borderRadius: 5,
+    borderRadius: 2,
     shadowColor: '#033a07',
     shadowOpacity: .2,
     shadowOffset: { width: 0, height: .5 },
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: '#f5f5f5',
     padding: 8,
-    borderRadius: 5,
+    borderRadius: 2,
     shadowColor: '#033a07',
     shadowOpacity: .2,
     shadowOffset: { width: 0, height: .5 },
@@ -101,5 +107,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "space-between",
     marginHorizontal: 40
+  },
+  button: {
+    color: '#033a07',
+    backgroundColor: '#f5f5f5',
+    padding: 5,
+    textAlign: "center",
+    fontSize: 18,
+    marginVertical: 5,
+    marginLeft: 20,
+    width: 125
   }
 })

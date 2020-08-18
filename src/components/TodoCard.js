@@ -27,7 +27,7 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
     input: {
       textAlignVertical: 'top',
       height: 100,
-      borderRadius: 5,
+      borderRadius: 2,
       borderColor: '#eef7ee',
       borderWidth: 1,
       backgroundColor: '#f5f5f5',
@@ -101,11 +101,10 @@ export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
       headers: {
         'Authorization': tokenValue
       }
-    }).then(response => response.json())
-      .then(() => {
-        const updatedTodos = todos.filter(newtodo => newtodo.id !== todo.id)
-        setTodos(updatedTodos)
-      })
+    }).then(() => {
+      const updatedTodos = todos.filter(newtodo => newtodo.id !== todo.id)
+      setTodos(updatedTodos)
+    })
   }
 
   function createCard() {

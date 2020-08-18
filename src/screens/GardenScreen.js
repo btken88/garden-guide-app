@@ -19,7 +19,7 @@ export default function GardenScreen({ navigation, tokenValue, userPlants, setUs
                 location='Plant Variety'
                 navigation={navigation} />
             }} />
-          : <Text>Add some plants to get started!</Text>}
+          : <Text style={styles.noGarden}>Add plants to get started!</Text>}
       </View>
     </SafeAreaView>
   )
@@ -31,15 +31,12 @@ const [red, green, brown, yellow, black, white] = ['#7a152e', '#033a07', '#461c0
 const styles = StyleSheet.create({
   fill: {
     flex: 1,
-    backgroundColor: '#eef7ee'
+    backgroundColor: '#033a07'
   },
-  header: {
-    fontSize: 30,
-    marginVertical: 10,
+  noGarden: {
+    fontSize: 20,
+    color: '#f5f5f5',
     textAlign: "center",
-    color: brown,
-    textShadowColor: white,
-    textShadowRadius: 3,
-    fontWeight: "bold"
-  },
+    marginVertical: 20
+  }
 })

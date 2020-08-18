@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { ScrollView, Text, StyleSheet, Image, Button, View } from 'react-native'
+import React from 'react'
+import { ScrollView, Text, StyleSheet, Image, TouchableOpacity, View } from 'react-native'
 import GrowingInfo from '../components/GrowingInfo'
 import PlantNotes from '../components/PlantNotes'
 
@@ -38,7 +38,9 @@ export default function UserPlantScreen({ navigation, route, setUserPlants, user
         userPlants={userPlants}
         tokenValue={tokenValue}
         plant={plant} />
-      <Button title='Delete Plant' onPress={deletePlant} color='#033a07' />
+      <TouchableOpacity onPress={deletePlant}>
+        <Text style={styles.button}>Delete Plant</Text>
+      </TouchableOpacity>
     </ScrollView>
   )
 }
@@ -46,7 +48,7 @@ export default function UserPlantScreen({ navigation, route, setUserPlants, user
 const styles = StyleSheet.create({
   fill: {
     flex: 1,
-    backgroundColor: '#eef7ee'
+    backgroundColor: '#033a07'
   },
   header: {
     fontSize: 20,
@@ -76,5 +78,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: .5 },
     shadowRadius: 2,
     elevation: 1.5,
+  },
+  button: {
+    color: '#033a07',
+    backgroundColor: '#f5f5f5',
+    padding: 5,
+    textAlign: "center",
+    fontSize: 18,
+    marginHorizontal: 125,
+    marginVertical: 5
   }
 })

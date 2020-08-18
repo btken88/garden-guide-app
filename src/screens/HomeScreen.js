@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, SafeAreaView, StyleSheet, Button } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import HeaderBar from '../components/HeaderBar'
 import Weather from '../components/Weather'
@@ -18,7 +18,7 @@ export default function HomeScreen({ setToken, tokenValue }) {
       }
     }).then(response => response.json())
       .then(setWeather)
-  }, [])
+  }, [tokenValue])
 
   return (
     <SafeAreaView style={styles.screenFill}>
@@ -32,14 +32,14 @@ export default function HomeScreen({ setToken, tokenValue }) {
           <Text style={styles.featuresContent}>See alerts on the home page for upcoming planting dates and todos</Text>
         </View>
         {weather.lat ? <Weather weather={weather} /> : null}
-        <Button
-          title="Log Out"
+        <TouchableOpacity
           onPress={() => {
             AsyncStorage.removeItem('token')
               .then(setToken(false))
               .catch(console.log)
-          }}
-          color='#033a07' />
+          }}>
+          <Text style={styles.button}>Log Out</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView >
   )
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   fill: {
     flex: 1,
-    backgroundColor: '#eef7ee'
+    backgroundColor: '#033a07'
   },
   featuresHeader: {
     fontSize: 20,
@@ -72,8 +72,15 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   screenFill: {
-    backgroundColor: white,
     flex: 1
   },
+  button: {
+    color: '#033a07',
+    backgroundColor: '#f5f5f5',
+    padding: 5,
+    textAlign: "center",
+    fontSize: 18,
+    marginHorizontal: 125
+  }
 })
 

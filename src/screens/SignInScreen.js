@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Button, TextInput, SafeAreaView, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, TextInput, SafeAreaView, Text, StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import HeaderBar from '../components/HeaderBar'
 
@@ -50,11 +50,12 @@ export default function SignInScreen({ navigation, setToken, setTokenValue }) {
             value={user.password}
             onChangeText={text => setUser({ ...user, password: text })} />
           <View style={styles.buttonContainer}>
-            <Button title="Log In" color={green} onPress={logIn} />
-            <Button
-              title="New User? Sign Up"
-              color={green}
-              onPress={() => navigation.navigate('Sign Up')} />
+            <TouchableOpacity onPress={logIn}>
+              <Text style={styles.button}>Sign In</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
+              <Text style={styles.button}>New User? Sign up</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -66,14 +67,14 @@ const [red, green, brown, yellow, black, white] = ['#7a152e', '#033a07', '#461c0
 
 const styles = StyleSheet.create({
   fill: {
-    backgroundColor: '#eef7ee',
+    backgroundColor: '#033a07',
     height: '100%',
   },
   card: {
     backgroundColor: '#f5f5f5',
     marginHorizontal: 20,
     marginTop: 60,
-    borderRadius: 3,
+    borderRadius: 2,
     shadowColor: '#033a07',
     shadowOpacity: .2,
     shadowOffset: { width: 0, height: .5 },
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#fafafa',
-    borderRadius: 3,
+    borderRadius: 2,
     fontSize: 16,
     padding: 5,
     margin: 8,
@@ -104,4 +105,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginVertical: 10
   },
+  button: {
+    color: '#f5f5f5',
+    backgroundColor: '#033a07',
+    padding: 5,
+    textAlign: "center",
+    fontSize: 18,
+  }
 })

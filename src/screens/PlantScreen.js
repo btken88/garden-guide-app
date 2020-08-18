@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Image, Button } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import GrowingInfo from '../components/GrowingInfo'
 
 // const varietyURL = 'https://garden-guide.herokuapp.com/varieties/'
@@ -42,7 +42,11 @@ export default function PlantScreen({ route, userPlants, setUserPlants, tokenVal
         <Image style={styles.image} source={{ uri: plant.image }} alt={plant.commonName} />
         <Text style={styles.description}>{plant.description}</Text>
         <GrowingInfo plant={plant} />
-        {owned ? null : <Button title='Add to Garden' onPress={savePlant} color='#033a07' />}
+        {owned
+          ? null
+          : <TouchableOpacity onPress={savePlant}>
+            <Text style={styles.button}>Add to Garden</Text>
+          </TouchableOpacity>}
       </>
     )
   }
@@ -56,7 +60,7 @@ export default function PlantScreen({ route, userPlants, setUserPlants, tokenVal
 const styles = StyleSheet.create({
   fill: {
     flex: 1,
-    backgroundColor: '#eef7ee'
+    backgroundColor: '#033a07'
   },
   header: {
     fontSize: 20,
@@ -80,4 +84,13 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1.5
   },
+  button: {
+    color: '#033a07',
+    backgroundColor: '#f5f5f5',
+    padding: 5,
+    textAlign: "center",
+    fontSize: 18,
+    marginHorizontal: 125,
+    marginVertical: 5
+  }
 })

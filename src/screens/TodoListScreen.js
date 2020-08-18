@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, Text, ImageBackground, StyleSheet, Button, FlatList, View } from 'react-native'
+import { SafeAreaView, Text, StyleSheet, FlatList, View, TouchableOpacity } from 'react-native'
 import TodoForm from '../components/TodoForm'
 import TodoCard from '../components/TodoCard'
 import HeaderBar from '../components/HeaderBar'
@@ -45,16 +45,21 @@ export default function TodoListScreen({ tokenValue }) {
               setTodos={setTodos}
               tokenValue={tokenValue} />
           }} />
-        <FlatList
-          data={done}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => {
-            return <TodoCard
-              todoData={item}
-              todos={todos}
-              setTodos={setTodos}
-              tokenValue={tokenValue} />
-          }} />
+        {done.length
+          ? <View style={{ maxHeight: 200 }}>
+            <Text style={[styles.notodo, { margin: 0 }]}>Completed</Text>
+            <FlatList
+              data={done}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({ item }) => {
+                return <TodoCard
+                  todoData={item}
+                  todos={todos}
+                  setTodos={setTodos}
+                  tokenValue={tokenValue} />
+              }} />
+          </View>
+          : null}
       </>
     )
   }
@@ -69,10 +74,9 @@ export default function TodoListScreen({ tokenValue }) {
             todos={todos}
             setTodos={setTodos}
             tokenValue={tokenValue} />
-          : <Button
-            onPress={() => setNewTodo(true)}
-            title='Add a New Todo'
-            color='#033a07' />}
+          : <TouchableOpacity onPress={() => setNewTodo(true)}>
+            <Text style={styles.button}>Add a new To Do</Text>
+          </TouchableOpacity>}
         {todos.length
           ? todosList()
           : <Text style={styles.notodo}>No Todos Yet</Text>}
@@ -87,7 +91,7 @@ const [red, green, brown, yellow, black, white] = ['#7a152e', '#033a07', '#461c0
 const styles = StyleSheet.create({
   fill: {
     flex: 1,
-    backgroundColor: '#eef7ee'
+    backgroundColor: '#033a07'
   },
   backgroundImage: {
     width: '100%',
@@ -109,6 +113,16 @@ const styles = StyleSheet.create({
   notodo: {
     fontSize: 20,
     textAlign: "center",
-    margin: 20
+    margin: 20,
+    color: '#f5f5f5'
+  },
+  button: {
+    color: '#033a07',
+    backgroundColor: '#f5f5f5',
+    padding: 5,
+    textAlign: "center",
+    fontSize: 18,
+    marginHorizontal: 125,
+    marginTop: 8
   }
 })

@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: white
   },
   fill: {
-    backgroundColor: '#eef7ee',
+    backgroundColor: '#033a07',
     flex: 1
   },
   header: {

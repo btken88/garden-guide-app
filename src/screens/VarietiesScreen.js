@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, View, Text, Image, StyleSheet, FlatList, Button } from 'react-native'
+import { ScrollView, View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import PlantCard from '../components/PlantCard'
 import AddVarietyForm from '../components/AddVarietyForm'
 
@@ -74,11 +74,10 @@ export default function VarietiesScreen({ route, navigation, tokenValue }) {
           varieties={varieties}
           setVarieties={setVarieties}
           tokenValue={tokenValue} />
-        : <Button
-          title="Add a Variety"
-          color="#033a07"
-          onPress={() => setShowAddForm(true)}
-          style={styles.bottom} />}
+        : <TouchableOpacity
+          onPress={() => setShowAddForm(true)}>
+          <Text style={styles.button}>Add a Variety</Text>
+        </TouchableOpacity>}
     </View>
   )
 }
@@ -88,13 +87,13 @@ const styles = StyleSheet.create({
     height: 180,
     marginVertical: 10,
     marginHorizontal: 20,
-    borderRadius: 3
+    borderRadius: 2
   },
   fill: {
     display: "flex",
     flexDirection: "column",
     flex: 1,
-    backgroundColor: '#eef7ee'
+    backgroundColor: '#033a07'
   },
   description: {
     fontSize: 16,
@@ -112,7 +111,13 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1.5
   },
-  bottom: {
-    alignSelf: 'flex-end'
+  button: {
+    color: '#033a07',
+    backgroundColor: '#f5f5f5',
+    padding: 5,
+    textAlign: "center",
+    fontSize: 18,
+    marginHorizontal: 125,
+    marginVertical: 5
   }
 })
