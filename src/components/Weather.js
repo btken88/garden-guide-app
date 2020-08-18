@@ -11,9 +11,9 @@ export default function Weather({ weather }) {
       <>
         <Text style={[styles.header, { marginTop: 0 }]}>Current Weather</Text>
         <Image style={styles.icon} source={{ uri: iconURL }} alt={current.weather[0].main} />
-        <Text>{current.weather[0].main}</Text>
-        <Text>Temp: {Math.floor(current.temp)}°</Text>
-        <Text>Feels Like: {Math.floor(current.feels_like)}°</Text>
+        <Text style={styles.text}>{current.weather[0].description}</Text>
+        <Text style={styles.text}>Temp: {Math.floor(current.temp)}°</Text>
+        <Text style={styles.text}>Feels Like: {Math.floor(current.feels_like)}°</Text>
       </>)
   }
 
@@ -23,9 +23,9 @@ export default function Weather({ weather }) {
       return (
         <View key={day.sunrise} style={styles.day}>
           <Image style={styles.icon} source={{ uri: iconURL }} alt={day.weather[0].main} />
-          <Text style={{ textAlign: 'center' }}>{day.weather[0].main}</Text>
-          <Text>High: {Math.floor(day.temp.max)}°</Text>
-          <Text>Low: {Math.floor(day.temp.min)}°</Text>
+          <Text style={[styles.text, { textAlign: 'center' }]}>{day.weather[0].description}</Text>
+          <Text style={styles.text}>High: {Math.floor(day.temp.max)}°</Text>
+          <Text style={styles.text}>Low: {Math.floor(day.temp.min)}°</Text>
         </View>
       )
     })
@@ -70,5 +70,8 @@ const styles = StyleSheet.create({
   },
   day: {
     marginHorizontal: 5
+  },
+  text: {
+    fontSize: 14
   }
 })
