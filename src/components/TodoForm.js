@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Text, View, TextInput, StyleSheet, Switch, Button } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage'
 
 const todoURL = 'http://localhost:5000/todos'
 export default function TodoForm({ setNewTodo, todos, setTodos, tokenValue }) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, SafeAreaView, StyleSheet, FlatList } from 'react-native'
+import { View, SafeAreaView, StyleSheet, FlatList } from 'react-native'
 import PlantCard from '../components/PlantCard'
 import HeaderBar from '../components/HeaderBar'
 

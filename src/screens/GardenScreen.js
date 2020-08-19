@@ -3,7 +3,7 @@ import { SafeAreaView, Text, StyleSheet, View, FlatList } from 'react-native'
 import PlantCard from '../components/PlantCard'
 import HeaderBar from '../components/HeaderBar'
 
-export default function GardenScreen({ navigation, tokenValue, userPlants, setUserPlants }) {
+export default function GardenScreen({ navigation, userPlants }) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
