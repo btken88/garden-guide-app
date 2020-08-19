@@ -16,7 +16,8 @@ import GardenNavContainer from './src/components/GardenNavContainer'
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const userPlantsURL = 'http://localhost:5000/user_plants'
+// const userPlantsURL = 'http://localhost:5000/user_plants'
+const userPlantsURL = 'http://garden-guide.herokuapp.com/user_plants'
 
 export default function App() {
   const [token, setToken] = useState(false)
