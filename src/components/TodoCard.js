@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Switch, Button, TextInput } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage'
 
-const todoURL = 'http://localhost:5000/todos/'
+// const todoURL = 'http://localhost:5000/todos/'
+const todoURL = 'http://garden-guide.herokuapp.com/todos/'
 
 export default function TodoCard({ todoData, todos, setTodos, tokenValue }) {
   const [todo, setTodo] = useState(todoData)

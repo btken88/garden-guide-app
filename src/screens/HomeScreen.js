@@ -4,7 +4,8 @@ import AsyncStorage from '@react-native-community/async-storage'
 import HeaderBar from '../components/HeaderBar'
 import Weather from '../components/Weather'
 
-const weatherURL = 'http://localhost:5000/weather'
+// const weatherURL = 'http://localhost:5000/weather'
+const weatherURL = 'http://garden-guide.herokuapp.com/weather'
 
 export default function HomeScreen({ setToken, tokenValue }) {
   const [weather, setWeather] = useState({})

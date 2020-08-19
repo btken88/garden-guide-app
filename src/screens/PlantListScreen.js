@@ -3,8 +3,8 @@ import { View, SafeAreaView, StyleSheet, FlatList } from 'react-native'
 import PlantCard from '../components/PlantCard'
 import HeaderBar from '../components/HeaderBar'
 
-// const baseURL = 'https://garden-guide.herokuapp.com'
-const baseURL = 'http://localhost:5000'
+const baseURL = 'https://garden-guide.herokuapp.com'
+// const baseURL = 'http://localhost:5000'
 
 export default function PlantListScreen({ navigation }) {
   const [plants, setPlants] = useState([])

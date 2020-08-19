@@ -3,7 +3,8 @@ import { SafeAreaView, View, Text, TextInput, TouchableOpacity, StyleSheet } fro
 import AsyncStorage from '@react-native-community/async-storage'
 import HeaderBar from '../components/HeaderBar'
 
-const signUpURL = 'http://localhost:5000/signup'
+// const signUpURL = 'http://localhost:5000/signup'
+const signUpURL = 'http://garden-guide.herokuapp.com/signup'
 
 const initialState = {
   first_name: '',

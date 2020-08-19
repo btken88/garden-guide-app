@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, Button, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
-const varietiesURL = 'http://localhost:5000/varieties'
+// const varietiesURL = 'http://localhost:5000/varieties'
+const varietiesURL = 'https://garden-guide.herokuapp.com/varieties'
 
 export default function AddVarietyForm({ plantId, setShowAddForm, varieties, setVarieties, tokenValue }) {
   const blankFormState = {

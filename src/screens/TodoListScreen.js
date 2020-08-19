@@ -4,8 +4,8 @@ import TodoForm from '../components/TodoForm'
 import TodoCard from '../components/TodoCard'
 import HeaderBar from '../components/HeaderBar'
 
-const todosURL = 'http://localhost:5000/todos'
-const image = require('../../assets/colorful-vegetables-low.jpg')
+// const todosURL = 'http://localhost:5000/todos'
+const todosURL = 'http://garden-guide.herokuapp.com/todos'
 
 export default function TodoListScreen({ tokenValue }) {
   const [newTodo, setNewTodo] = useState(false)

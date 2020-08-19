@@ -37,7 +37,7 @@ The Garden Guide App was born out of a need for a centralized place to keep all 
 
 ## Setup
 
-To get Garden Guide installed and running, you will need both the Garden Guide app and the Garden Guide API. The backend and setup instructions to run in development can be found at [Garden Guide API](https://github.com/btken88/garden-guide-api). Once you've installed the backend, you can get the frontend running by navigating into the directory, installing node modules and starting the expo server:
+To get Garden Guide installed and running, you will need both the Garden Guide app and the Garden Guide API. The back end and setup instructions to run in development can be found at [Garden Guide API](https://github.com/btken88/garden-guide-api). Once you've installed the back end, you can get the front end running by navigating into the directory, installing node modules and starting the expo server:
 
 ```bash
 cd garden-guide-app

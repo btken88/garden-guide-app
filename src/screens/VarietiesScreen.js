@@ -3,11 +3,11 @@ import { ScrollView, View, Text, Image, StyleSheet, FlatList, TouchableOpacity }
 import PlantCard from '../components/PlantCard'
 import AddVarietyForm from '../components/AddVarietyForm'
 
-// const plantsBaseURL = 'https://garden-guide.herokuapp.com/plants/'
-// const varietiesBaseURL = 'https://garden-guide.herokuapp.com/varieties/'
+const plantsBaseURL = 'https://garden-guide.herokuapp.com/plants/'
+const varietiesBaseURL = 'https://garden-guide.herokuapp.com/varieties/'
 
-const plantsBaseURL = 'http://localhost:5000/plants/'
-const varietiesBaseURL = 'http://localhost:5000/varieties/'
+// const plantsBaseURL = 'http://localhost:5000/plants/'
+// const varietiesBaseURL = 'http://localhost:5000/varieties/'
 
 export default function VarietiesScreen({ route, navigation, tokenValue }) {
   const plantId = route.params.id

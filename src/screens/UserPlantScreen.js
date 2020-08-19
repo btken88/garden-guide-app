@@ -3,9 +3,10 @@ import { ScrollView, Text, StyleSheet, Image, TouchableOpacity, View } from 'rea
 import GrowingInfo from '../components/GrowingInfo'
 import PlantNotes from '../components/PlantNotes'
 
-// const varietyURL = 'https://garden-guide.herokuapp.com/varieties/'
-const varietyURL = 'http://localhost:5000/varieties/'
-const userPlantURL = 'http://localhost:5000/user_plants/'
+const varietyURL = 'https://garden-guide.herokuapp.com/varieties/'
+const userPlantURL = 'http://garden-guide.herokuapp.com/user_plants/'
+// const varietyURL = 'http://localhost:5000/varieties/'
+// const userPlantURL = 'http://localhost:5000/user_plants/'
 
 export default function UserPlantScreen({ navigation, route, setUserPlants, userPlants, tokenValue }) {
   const plant = route.params.plant

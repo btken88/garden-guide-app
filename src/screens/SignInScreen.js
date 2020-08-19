@@ -8,7 +8,8 @@ const initialState = {
   password: ''
 }
 
-const loginURL = 'http://localhost:5000/login'
+// const loginURL = 'http://localhost:5000/login'
+const loginURL = 'http://garden-guide.herokuapp.com/login'
 
 export default function SignInScreen({ navigation, setToken, setTokenValue }) {
   const [user, setUser] = useState(initialState)

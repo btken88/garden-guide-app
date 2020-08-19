@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Text, View, TextInput, StyleSheet, Switch, Button } from 'react-native'
 
-const todoURL = 'http://localhost:5000/todos'
+// const todoURL = 'http://localhost:5000/todos'
+const todoURL = 'http://garden-guide.herokuapp.com/todos'
+
 export default function TodoForm({ setNewTodo, todos, setTodos, tokenValue }) {
   const [todoForm, setTodoForm] = useState({
     todo: '',

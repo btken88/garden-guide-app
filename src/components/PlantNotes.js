@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 
-const userPlantsURL = 'http://localhost:5000/user_plants/'
+// const userPlantsURL = 'http://localhost:5000/user_plants/'
+const userPlantsURL = 'http://garden-guide.herokuapp.com/user_plants/'
 
 export default function PlantNotes({ plant, userPlants, setUserPlants, tokenValue }) {
   const [edit, setEdit] = useState(false)

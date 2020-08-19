@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import GrowingInfo from '../components/GrowingInfo'
 
-// const varietyURL = 'https://garden-guide.herokuapp.com/varieties/'
-const varietyURL = 'http://localhost:5000/varieties/'
-const userPlantsURL = 'http://localhost:5000/user_plants'
+// const varietyURL = 'http://localhost:5000/varieties/'
+// const userPlantsURL = 'http://localhost:5000/user_plants'
+const varietyURL = 'https://garden-guide.herokuapp.com/varieties/'
+const userPlantsURL = 'http://garden-guide.herokuapp.com/user_plants'
 
 export default function PlantScreen({ route, userPlants, setUserPlants, tokenValue }) {
   const varietyId = route.params.id
