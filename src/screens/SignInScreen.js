@@ -15,7 +15,6 @@ export default function SignInScreen({ navigation, setToken, setTokenValue }) {
   const [user, setUser] = useState(initialState)
 
   function logIn() {
-    console.log(user)
     fetch(loginURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -30,7 +29,7 @@ export default function SignInScreen({ navigation, setToken, setTokenValue }) {
           alert(result.error)
         }
       })
-      .catch(error => console.error(error.error))
+      .catch(error => alert(error.error))
   }
 
   return (

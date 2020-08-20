@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Button, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
 // const varietiesURL = 'http://localhost:5000/varieties'
 const varietiesURL = 'https://garden-guide.herokuapp.com/varieties'
@@ -64,28 +64,33 @@ export default function AddVarietyForm({ plantId, setShowAddForm, varieties, set
         </Text>
         <View style={styles.flex}>
           <TouchableOpacity
-            onPress={() => setFormData({ ...formData, habit: 'Vine' })}>
+            onPress={() => setFormData({ ...formData, habit: 'Vine' })}
+          >
             <Text style={formData.habit === 'Vine' ? selected : unselected}>
               Vine
               </Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setFormData({ ...formData, habit: 'Bush' })}
-            style={styles.button}>
+          >
             <Text style={formData.habit === 'Bush' ? selected : unselected}>
               Bush
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setFormData({ ...formData, habit: null })}
-            style={styles.button}>
+          >
             <Text style={formData.habit === null ? selected : unselected}>Other</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={[styles.flex, { marginHorizontal: 10 }]}>
-        <Button title="Cancel" onPress={cancelAdd} color='#033a07' />
-        <Button title="Add Plant" onPress={addPlant} color='#033a07' />
+        <TouchableOpacity onPress={cancelAdd}>
+          <Text style={styles.button}>Cancel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={addPlant}>
+          <Text style={styles.button}>Add Plant</Text>
+        </TouchableOpacity>
       </View>
     </>
   )
@@ -142,5 +147,14 @@ const styles = StyleSheet.create({
     padding: 4,
     fontSize: 14,
     textAlign: "center"
-  }
+  },
+  button: {
+    color: '#033a07',
+    backgroundColor: '#f5f5f5',
+    padding: 5,
+    textAlign: "center",
+    fontSize: 18,
+    marginTop: 10,
+    marginHorizontal: 25
+  },
 })

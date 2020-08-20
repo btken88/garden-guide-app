@@ -42,20 +42,20 @@ export default function SignUpScreen({ navigation, setToken, setTokenValue }) {
         <View style={styles.card}>
 
           <View style={styles.nameContainer}>
-            <View>
+            <View style={{ flex: 1 }}>
               <Text style={styles.label}>First Name</Text>
               <TextInput
                 autoCorrect={false}
-                style={[styles.input, { width: 130 }]}
+                style={styles.input}
                 placeholder='First Name'
                 value={user.first_name}
                 onChangeText={text => setUser({ ...user, first_name: text })} />
             </View>
-            <View>
+            <View style={{ flex: 1 }}>
               <Text style={styles.label}>Last Name</Text>
               <TextInput
                 autoCorrect={false}
-                style={[styles.input, { width: 200 }]}
+                style={styles.input}
                 placeholder='Last Name'
                 value={user.last_name}
                 onChangeText={text => setUser({ ...user, last_name: text })} />
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     shadowOpacity: .2,
     shadowOffset: { width: 0, height: .5 },
     shadowRadius: 2,
-    elevation: 1.5
+    elevation: 1.5,
   },
   label: {
     marginLeft: 20,
@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
   nameContainer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between"
   },
   button: {
     color: '#f5f5f5',
