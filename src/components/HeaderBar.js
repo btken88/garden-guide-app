@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: '#461c0c',
     textShadowColor: "#f5f5f5",
-    textShadowRadius: 2,
-    fontWeight: "bold"
+    textShadowRadius: 3,
+    fontFamily: 'Mali_700Bold'
   },
   backgroundImage: {
     width: '100%',

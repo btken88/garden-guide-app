@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TouchableOpacity, TextInput, SafeAreaView, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, TextInput, SafeAreaView, Text, StyleSheet, Image } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import HeaderBar from '../components/HeaderBar'
 
@@ -55,14 +55,15 @@ export default function SignInScreen({ navigation, setToken, setTokenValue }) {
             value={user.password}
             onChangeText={text => setUser({ ...user, password: text })} />
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={logIn}>
-              <Text style={styles.button}>Sign In</Text>
-            </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
               <Text style={styles.button}>New User? Sign up</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={logIn}>
+              <Text style={styles.button}>Sign In</Text>
+            </TouchableOpacity>
           </View>
         </View>
+        <Image source={require('../../assets/android-icon.png')} style={styles.image} />
       </View>
     </SafeAreaView >
   )
@@ -116,5 +117,11 @@ const styles = StyleSheet.create({
     padding: 5,
     textAlign: "center",
     fontSize: 18,
+  },
+  image: {
+    marginTop: 20,
+    height: 400,
+    width: '100%',
+    resizeMode: 'stretch'
   }
 })

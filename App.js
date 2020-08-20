@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Platform, StatusBar } from 'react-native'
+import { AppLoading } from 'expo'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { useFonts, Mali_700Bold } from '@expo-google-fonts/mali'
 
 import HomeScreen from './src/screens/HomeScreen'
 import PlantNavContainer from './src/components/PlantNavContainer'
@@ -23,6 +25,8 @@ export default function App() {
   const [token, setToken] = useState(false)
   const [tokenValue, setTokenValue] = useState('')
   const [userPlants, setUserPlants] = useState([])
+
+  let [fontsLoaded] = useFonts({ Mali_700Bold })
 
   useEffect(() => {
     fetch(userPlantsURL, {
@@ -98,6 +102,8 @@ export default function App() {
       </Tab.Screen>
     </Tab.Navigator>
   )
+
+  if (!fontsLoaded) return <AppLoading />
 
   return (
     <NavigationContainer>

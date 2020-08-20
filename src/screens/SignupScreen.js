@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import HeaderBar from '../components/HeaderBar'
 
@@ -40,7 +40,6 @@ export default function SignUpScreen({ navigation, setToken, setTokenValue }) {
       <HeaderBar title='Sign Up' />
       <View style={styles.fill}>
         <View style={styles.card}>
-
           <View style={styles.nameContainer}>
             <View style={{ flex: 1 }}>
               <Text style={styles.label}>First Name</Text>
@@ -85,14 +84,15 @@ export default function SignUpScreen({ navigation, setToken, setTokenValue }) {
             value={user.password}
             onChangeText={text => setUser({ ...user, password: text })} />
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={signUp}>
-              <Text style={styles.button}>Sign Up</Text>
-            </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
               <Text style={styles.button}>Back to Sign In</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={signUp}>
+              <Text style={styles.button}>Sign Up</Text>
+            </TouchableOpacity>
           </View>
         </View>
+        <Image source={require('../../assets/android-icon.png')} style={styles.image} />
       </View>
     </SafeAreaView>
   )
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#f5f5f5',
     marginHorizontal: 20,
-    marginTop: 60,
+    marginTop: 40,
     borderRadius: 2,
     shadowColor: '#033a07',
     shadowOpacity: .2,
@@ -150,5 +150,11 @@ const styles = StyleSheet.create({
     padding: 5,
     textAlign: "center",
     fontSize: 18,
+  },
+  image: {
+    marginTop: 20,
+    height: 350,
+    width: '90%',
+    resizeMode: 'stretch'
   }
 })
